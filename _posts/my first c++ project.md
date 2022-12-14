@@ -1,12 +1,21 @@
-#第一个C++项目（一个无聊的游戏）
+---
+layout:post
+title:my first c++ project
+date:2022-12-1
+author:xyw
+catalog:true
+tags:
+    -Blog
+---
+# 第一个C++项目（一个无聊的游戏）
 
 
 
-##原先的期末作业，后来期末提前取消了
+## 原先的期末作业，后来期末提前取消了
 
 未完全完工，可能有亿点bug
 
-##基本玩法
+## 基本玩法
 
 按鼠标中键，翻开国旗
 
@@ -14,7 +23,7 @@
 
 ****
 
-##代码
+## 代码
 
 '#include<iostream>
 #include<Windows.h>
@@ -266,7 +275,7 @@ void init()
 
 ****
 
-##图片素材
+## 图片素材
 
 必须以原名字发在cpp同级的文件夹中
 
