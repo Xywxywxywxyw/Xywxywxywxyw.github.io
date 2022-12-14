@@ -1,12 +1,17 @@
 ---
-layout:post
-title:my first post
-date:2022-9-29
-author:xyw
-catalog:true
+layout:     post
+title:      first post
+
+date:       2022-09-29
+author:     xyw
+
+catalog: true
 tags:
-    -Blog
+    - Mac
+    - 终端
+    - Git
 ---
-#
+
+>第一篇帖子
 wellcome to here
 hope we will have a good time together

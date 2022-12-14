@@ -1,12 +1,15 @@
 ---
-layout:post
-title:my first c++ project
-date:2022-12-1
-author:xyw
-catalog:true
+layout:     post
+title:      my first c++ project
+subtitle:   连连看
+date:       2022-12-01
+author:     xyw
+
+catalog: true
 tags:
-    -Blog
+    - C++
 ---
+
 # 第一个C++项目（一个无聊的游戏）
 
 
@@ -25,7 +28,7 @@ tags:
 
 ## 代码
 
-'#include<iostream>
+#include<iostream>
 #include<Windows.h>
 #include<graphics.h>
 #include<vector>
@@ -271,7 +274,7 @@ void init()
                }
             }
            }                   
-}'
+}
 
 ****
 
