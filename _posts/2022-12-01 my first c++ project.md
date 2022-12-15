@@ -28,38 +28,38 @@ tags:
 
 ## 代码
 
-#include<iostream>
-#include<Windows.h>
-#include<graphics.h>
-#include<vector>
-#include<time.h>
-using namespace std;
-#define ROWCOUNT 10 //行的图数
-#define COLCOUNT 16 //列的图数
-#define FRONTWIDTH 41//一个格子的宽
-#define FRONTHEIGHT 51//一个格子的高
-#define BKWIDTH 46//一个格子的背景宽
-#define BKHEIGHT 56//一个格子的背景高
-#define KEY_DOWN(VK_NONAME) ((GetAsyncKeyState(VK_NONAME) & 0x8000) ? 1:0)
-int gamemap[ROWCOUNT][COLCOUNT]={0};//存储图案
-int a[ROWCOUNT][COLCOUNT]={0};//储存点击状态
-int b[1000]={-1,-2,-3,-4,0};//第n次点击的图片的编号
-int x[1000]={0};//第n次点击的图片的x坐标
-int y[1000]={0};//第n次点击的图片的y坐标
-int flag3=0;
-double it=0;
-void setmap();
-void printmap();//命令行
-void drawmap();//图形界面显示
-void print();//翻转卡牌
-void TIME();//单次计时函数
-void init();
-IMAGE backcard,card,qw,back;
-DWORD WINAPI Threadl(LPVOID IpParameter);//计时线程
-void main()//主函数已用过的变量名num,n,a[][],b[],i,x[],y[]
+#include<iostream>  
+#include<Windows.h>  
+#include<graphics.h>  
+#include<vector>  
+#include<time.h>  
+using namespace std;  
+#define ROWCOUNT 10 //行的图数  
+#define COLCOUNT 16 //列的图数  
+#define FRONTWIDTH 41//一个格子的宽  
+#define FRONTHEIGHT 51//一个格子的高  
+#define BKWIDTH 46//一个格子的背景宽  
+#define BKHEIGHT 56//一个格子的背景高  
+#define KEY_DOWN(VK_NONAME) ((GetAsyncKeyState(VK_NONAME) & 0x8000) ? 1:0)  
+int gamemap[ROWCOUNT][COLCOUNT]={0};//存储图案  
+int a[ROWCOUNT][COLCOUNT]={0};//储存点击状态  
+int b[1000]={-1,-2,-3,-4,0};//第n次点击的图片的编号  
+int x[1000]={0};//第n次点击的图片的x坐标  
+int y[1000]={0};//第n次点击的图片的y坐标  
+int flag3=0;  
+double it=0;  
+void setmap();  
+void printmap();//命令行  
+void drawmap();//图形界面显示  
+void print();//翻转卡牌  
+void TIME();//单次计时函数  
+void init();  
+IMAGE backcard,card,qw,back;  
+DWORD WINAPI Threadl(LPVOID IpParameter);//计时线程  
+void main()//主函数已用过的变量名num,n,a[][],b[],i,x[],y[]  
 {
-    init();
-    //initgraph(COLCOUNT*BKWIDTH,ROWCOUNT*BKHEIGHT,SHOWCONSOLE);//窗口初始化,窗口大小由格子的大小与格子的数量决定
+    init();  
+    //initgraph(COLCOUNT*BKWIDTH,ROWCOUNT*BKHEIGHT,SHOWCONSOLE);//窗口初始化,窗口大小由格子的大小与格子的数量决定  
     srand(time(NULL));
     loadimage(&backcard,"backcard.jpg");
     loadimage(&card,"card.jpg");
@@ -73,7 +73,7 @@ void main()//主函数已用过的变量名num,n,a[][],b[],i,x[],y[]
     int flag=1,flag2=1;
     while(1)
     {  
-        msg = GetMouseMsg();
+        msg = GetMouseMsg();  
 
         if((msg.mkMButton||msg.mkLButton)&&flag==1)
         {
@@ -157,44 +157,45 @@ void main()//主函数已用过的变量名num,n,a[][],b[],i,x[],y[]
     
     while(1);
 
-}//停顿
+}//停顿  
 
-void setmap()               //随机生成模块
+void setmap()               //随机生成模块  
 {  
-    vector<int> v;                                          ;//在map数组中删去拿出的元素
-for(int i=0;i<ROWCOUNT*COLCOUNT/16;i++)          //总共有40种图案,将图案有序排列至map数组中
-{
-    for(int j=0;j<16;j++)                             //每种4个
-    {
-        v.push_back(i);                                    //map数组中将充满4个0,4个1……
-    }
-}
-//将map数组中的图案放到gamemap数组中
-     int index;
-    for(int i=0;i<ROWCOUNT*COLCOUNT;i++)
-{
-index=rand()%v.size();
-gamemap[i/COLCOUNT][i%COLCOUNT]=v[index];
-v.erase(v.begin()+index);
-}
-}
+    vector<int> v;                                          //在map数组中删去拿出的元素  
+for(int i=0;i<ROWCOUNT*COLCOUNT/16;i++)          //总共有40种图案,将图案有序排列至map数组中  
+{  
+    for(int j=0;j<16;j++)                             //每种4个  
+    {  
+        v.push_back(i);                                    //map数组 
+        中将充满4个0,4个1……  
+    }  
+}  
+//将map数组中的图案放到gamemap数组中  
+     int index;  
+    for(int i=0;i<ROWCOUNT*COLCOUNT;i++)  
+{  
+index=rand()%v.size();   
+gamemap[i/COLCOUNT][i%COLCOUNT]=v[index];  
+v.erase(v.begin()+index);  
+}  
+}  
 
-void printmap()                             //显示模块1
-{
-    cout<<endl;
-for (int i=0;i<ROWCOUNT;i++)
-  {  for(int j=0;j<COLCOUNT;j++)
-    {
-    printf("%02d ",gamemap[i][j]);
-    }
-printf("\n");
-  }
-}
+void printmap()                             //显示模块1  
+{  
+    cout<<endl;  
+for (int i=0;i<ROWCOUNT;i++)  
+  {  for(int j=0;j<COLCOUNT;j++)  
+    {  
+    printf("%02d ",gamemap[i][j]);  
+    }  
+printf("\n");  
+  }  
+}  
 
-void drawmap()                        //显示模块2
-{
-for (int i=0;i<ROWCOUNT;i++)
-  {  for(int j=0;j<COLCOUNT;j++)
+void drawmap()                        //显示模块2  
+{  
+for (int i=0;i<ROWCOUNT;i++)  
+  {  for(int j=0;j<COLCOUNT;j++)  
     {
 
         putimage(j*BKWIDTH,i*BKHEIGHT,BKWIDTH,BKHEIGHT,&qw,0,gamemap[i][j]*(BKHEIGHT));
@@ -204,29 +205,29 @@ for (int i=0;i<ROWCOUNT;i++)
     
      }
 
-  }
-}
+  }  
+}  
 
-void TIME()
-{
-    //printf("开始计时\n");
-   time_t start_t, end_t;
-   double diff_t;
-              time(&start_t);
-            Sleep(1000);
-             time(&end_t);
-            diff_t = difftime(end_t, start_t);
-           // printf("执行时间 = %f\n", diff_t);
-}
-DWORD WINAPI Threadl(LPVOID IpParameter)
-{
-    HANDLE hOutput= GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_CURSOR_INFO cci;
-    cci.dwSize=1;
-    cci.bVisible=0;
-    SetConsoleCursorInfo(hOutput,&cci);
+void TIME()  
+{  
+    //printf("开始计时\n");  
+   time_t start_t, end_t;   
+   double diff_t;  
+              time(&start_t);  
+            Sleep(1000);  
+             time(&end_t);  
+            diff_t = difftime(end_t, start_t);  
+           // printf("执行时间 = %f\n", diff_t);  
+}  
+DWORD WINAPI Threadl(LPVOID IpParameter)  
+{  
+    HANDLE hOutput= GetStdHandle(STD_OUTPUT_HANDLE);   
+    CONSOLE_CURSOR_INFO cci;  
+    cci.dwSize=1;  
+    cci.bVisible=0;  
+    SetConsoleCursorInfo(hOutput,&cci);  
     COORD coord={0,0};
-
+  
         printf("游戏开始\n");
       time_t start_t, end_t;
        double diff_t;
@@ -248,33 +249,34 @@ DWORD WINAPI Threadl(LPVOID IpParameter)
     return t;
     }
 
-void init()
-{
-    system("cls");
-    //初始化界面
-    cout<<endl<<"##欢迎来到连连看游戏##"<<endl;
-    //插入选择界面
-    cout<<"请输入1开始游戏"<<endl;//<<"初级（输入1）"<<endl<<"中级（输入2）"<<endl<<"高级（输入3）"<<endl;;
-    int option;
-    cin>>option;
-    switch(option)
-    {
-        case(1):
-            initgraph(COLCOUNT*BKWIDTH,ROWCOUNT*BKHEIGHT,SHOWCONSOLE);
-            //l=9,w=9,b=10;system("cls");goto CHUSHI;
-            break;
-        case(2):
-            initgraph(COLCOUNT*BKWIDTH,ROWCOUNT*BKHEIGHT,SHOWCONSOLE);
-            //Sleep(5000);
-            for (int i=0;i<ROWCOUNT;i++)
-           {  
-               for(int j=0;j<COLCOUNT;j++)
-               {
-                   a[i][j]=3;
-               }
-            }
-           }                   
-}
+void init()  
+{  
+    system("cls");  
+    //初始化界面  
+    cout<<endl<<"##欢迎来到连连看游戏##"<<endl;  
+    //插入选择界面  
+    cout<<"请输入1开始游戏"<<endl;  
+    //<<"初级（输入1）"<<endl<<"中级（输入2）"<<endl<<"高级（输入3）"<<endl;;
+    int option;  
+    cin>>option;  
+    switch(option)  
+    {  
+        case(1):  
+               initgraph(COLCOUNT*BKWIDTH,ROWCOUNT*BKHEIGHT,SHOWCONSOLE);  
+            //l=9,w=9,b=10;system("cls");goto CHUSHI;  
+            break;  
+        case(2):  
+            initgraph(COLCOUNT*BKWIDTH,ROWCOUNT*BKHEIGHT,SHOWCONSOLE);  
+            //Sleep(5000);  
+            for (int i=0;i<ROWCOUNT;i++)  
+           {    
+               for(int j=0;j<COLCOUNT;j++)  
+               {  
+                   a[i][j]=3;  
+               }  
+            }  
+           }                     
+}  
 
 ****
 
@@ -282,10 +284,10 @@ void init()
 
 必须以原名字发在cpp同级的文件夹中
 
-![back.bmp](![](https://s3.uuu.ovh/imgs/2022/12/01/36e7294d9056d8e4.bmp))
+![back.bmp](https://s3.uuu.ovh/imgs/2022/12/01/36e7294d9056d8e4.bmp)
 
-![qw.jpg](![](https://s3.uuu.ovh/imgs/2022/12/01/7ed544c93edd7cea.jpg))
+![qw.jpg](https://s3.uuu.ovh/imgs/2022/12/01/7ed544c93edd7cea.jpg)
 
-![backcard.jpg](![](https://s3.uuu.ovh/imgs/2022/12/01/c3091ccf514ed684.jpg))
+![backcard.jpg](https://s3.uuu.ovh/imgs/2022/12/01/c3091ccf514ed684.jpg)
 
 
