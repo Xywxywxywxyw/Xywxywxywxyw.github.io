@@ -7,7 +7,7 @@ author:     xyw
 
 catalog: true
 tags:
-    - Mac
+    
     - 终端
     - Git
 ---
